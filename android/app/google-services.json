@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "861652330203",
+    "project_id": "meliketodolist",
+    "storage_bucket": "meliketodolist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861652330203:android:d33cb760f9d12e0cad4efe",
+        "android_client_info": {
+          "package_name": "com.example.melike_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861652330203-5d41nsgv7uc0fskvhnich1pl2us6tgjs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo_dR9E-hXfHDMEgdKtD1OJQ3NaFgXyb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861652330203-5d41nsgv7uc0fskvhnich1pl2us6tgjs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "861652330203-9hu3vt3o2og8u75rgo36lppip0r0rrd0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
