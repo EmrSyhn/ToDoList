@@ -57,6 +57,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                                       ControllerDenetleyici: name),
                                   const SizedBox(height: 20),
                                   MainTextFormField(
+                                      keytype: TextInputType.emailAddress,
                                       LabelText: 'Mail Adresinizi Giriniz',
                                       ControllerDenetleyici: mail),
                                   const SizedBox(height: 20),
@@ -85,7 +86,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                               final kullaniciolusturma = await FirebaseAuth
                                   .instance
                                   .createUserWithEmailAndPassword(
-                                      email: name.text, password: pass.text);
+                                      email: mail.text, password: pass.text);
                               final uidTututcu = kullaniciolusturma.user?.uid;
                               FirebaseFirestore.instance
                                   .collection("users")
@@ -118,7 +119,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                                   ),
                                 );
                               },
-                              size: 20)
+                              size: 20),
                         ],
                       ),
                     ],
