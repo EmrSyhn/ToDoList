@@ -60,7 +60,7 @@ class _LoginPagesState extends State<LoginPages> {
                                     //1. kullanıcı verisini kontrol et
                                     // ignore: unnecessary_null_comparison
                                     if (t1.text == null || pass.text == null) {
-                                      DialogMesaj(context);
+                                      dialogMesaj(context);
                                     } else {
                                       // 2. Kullanıcı bilgileriile girşi yapmayı dene
                                       try {
@@ -89,7 +89,7 @@ class _LoginPagesState extends State<LoginPages> {
                                         if (e.code == 'wrong-password') {
                                           msg = "Parola yanlış veya hatalı";
                                         }
-                                        DialogMesaj(context, msg: msg);
+                                        dialogMesaj(context, msg: msg);
                                       }
                                     }
                                   },
@@ -127,7 +127,7 @@ class _LoginPagesState extends State<LoginPages> {
     );
   }
 
-  void DialogMesaj(BuildContext context, {String msg = ''}) {
+  void dialogMesaj(BuildContext context, {String msg = ''}) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
