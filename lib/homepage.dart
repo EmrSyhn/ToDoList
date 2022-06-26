@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:melike_project/userpage.dart';
 import 'components/Button.dart';
 import 'loginpage.dart';
 
@@ -28,13 +30,27 @@ class Anasayfa extends StatelessWidget {
                 const Text('Görevlerini kaydet ve listelemeye başla'),
                 const SizedBox(height: 100),
                 MainButton(
-                    press: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginPages(),
-                        ),
-                      );
+                    press: () async {
+                      //await FirebaseAuth.instance.signOut();
+
+                      final user = FirebaseAuth.instance.currentUser;
+                      if (user != null) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const UserPages(),
+                          ),
+                        );
+                        // navigate to home page
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPages(),
+                          ),
+                        );
+                        // log in
+                      }
                     },
                     text: 'Kullanmaya Başla')
               ],
