@@ -1,8 +1,6 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'components/Button.dart';
-import 'loginpages.dart';
+import 'loginpage.dart';
 
 //StatlessWidget'e geçildi
 class Anasayfa extends StatelessWidget {
