@@ -1,16 +1,15 @@
-# melike_project
+# ToDoList Uygulaması
 
-A new Flutter project.
+Yeni flutter projesinde daha önce yapmış olduğum fakat sonrasında hatalarımdan dolayı çalışmayan ToDoList uygulamasını tekrardan yaptım
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Bilgisayarınızda Flutter kurulu olduğundan emin olun.
+Uygulamayı indirip zip dosyasından çıkarın.
+Flutter/Dart destekleyen derleyici kullanıp zip dosyasından çıkardığınız klasörü açın.
+Uygulamamız artık derleyicinizde gözüküyor olmalı.
+Lib klasörüne girip main.dart dosyasına giriniz.
+Bilgisayarınızda emilatör veya fiziksel andorid/ios cihaz bağlı olduğundan emin olun.
+Ardından derleyicinizin ayarlarına göre değişiklik gösterebilir, uygulamaya başlatın Run'main.dart' a basın.
+Program derlendikten sonra karşınıza gelecek.
+Yeni bir hesap oluşturup kullanmaya başlayabilirsiniz.
