@@ -40,6 +40,12 @@ class _RegisterPagesState extends State<RegisterPages> {
                   ),
                   const SizedBox(height: 15),
                   const Text('Kayıt olun ve size yardımcı olalım'),
+                  SizedBox(height: 10),
+                  Image.asset(
+                    'assets/images/40.png',
+                    width: 100,
+                    height: 100,
+                  ),
                   Column(
                     children: [
                       Row(
