@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-void DialogMesaj(BuildContext context, {String msg = ''}) {
+void dialogMesaj(BuildContext context, {String msg = ''}) {
   showDialog(
     context: context,
     builder: (ctx) => AlertDialog(

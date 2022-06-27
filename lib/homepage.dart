@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:melike_project/userpage.dart';
-import 'components/Button.dart';
+import 'components/button.dart';
 import 'loginpage.dart';
 
 //StatlessWidget'e geçildi
@@ -32,7 +32,6 @@ class Anasayfa extends StatelessWidget {
                 MainButton(
                     press: () async {
                       //await FirebaseAuth.instance.signOut();
-
                       final user = FirebaseAuth.instance.currentUser;
                       if (user != null) {
                         Navigator.pushReplacement(

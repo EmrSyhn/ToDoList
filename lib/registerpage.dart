@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:melike_project/userpage.dart';
-import 'components/Button.dart';
-import 'components/DialogMesaj.dart';
-import 'components/TextButton.dart';
-import 'components/TextFormField.dart';
+import 'components/button.dart';
+import 'components/dialogMessage.dart';
+import 'components/textButton.dart';
+import 'components/textFormField.dart';
 import 'loginpage.dart';
 
 class RegisterPages extends StatefulWidget {
@@ -67,9 +67,10 @@ class _RegisterPagesState extends State<RegisterPages> {
                                       ControllerDenetleyici: pass),
                                   const SizedBox(height: 20),
                                   MainTextFormField(
-                                      obscureText: true,
-                                      LabelText: 'Parolanızı Tekrar Giriniz',
-                                      ControllerDenetleyici: passagain),
+                                    obscureText: true,
+                                    LabelText: 'Parolanızı Tekrar Giriniz',
+                                    ControllerDenetleyici: passagain,
+                                  ),
                                   const SizedBox(height: 20),
                                 ],
                               ),
@@ -80,13 +81,14 @@ class _RegisterPagesState extends State<RegisterPages> {
                       MainButton(
                           press: () async {
                             if (pass.text != passagain.text) {
-                              DialogMesaj(context, msg: 'Parolanız hatalı');
+                              dialogMesaj(context, msg: 'Parolanız hatalı');
                             } else if (_dogrulamaAnahtari.currentState!
                                 .validate()) {
                               final kullaniciolusturma = await FirebaseAuth
                                   .instance
                                   .createUserWithEmailAndPassword(
                                       email: mail.text, password: pass.text);
+
                               final uidTututcu = kullaniciolusturma.user?.uid;
                               FirebaseFirestore.instance
                                   .collection("users")

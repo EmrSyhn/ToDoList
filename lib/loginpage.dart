@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'components/Button.dart';
-import 'components/TextButton.dart';
-import 'components/TextFormField.dart';
+import 'components/button.dart';
+import 'components/textButton.dart';
+import 'components/textFormField.dart';
 import 'registerpage.dart';
 import 'userpage.dart';
 
@@ -100,7 +100,8 @@ class _LoginPagesState extends State<LoginPages> {
                                   const Text('Hesabın yok mu?'),
                                   MainTextButton(
                                       TextYazisi: 'Kayıt Ol',
-                                      Press: () {
+                                      Press: () async {
+                                        await biseyler();
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
@@ -143,5 +144,10 @@ class _LoginPagesState extends State<LoginPages> {
         ],
       ),
     );
+  }
+
+  biseyler() {
+    t1.clear();
+    pass.clear();
   }
 }

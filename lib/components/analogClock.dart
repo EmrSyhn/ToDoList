@@ -18,8 +18,8 @@ class AnalogSaat extends StatelessWidget {
           offset: Offset(4, 8), // Shadow position
         ),
       ], color: Color(0xffFFECE4), shape: BoxShape.circle),
-      width: 100,
-      height: 120,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.1,
       isLive: true,
       secondHandColor: const Color(0xFFBCB9B9),
       hourHandColor: const Color(0xFFBE4713),

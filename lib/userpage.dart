@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:melike_project/listadd.dart';
 import 'package:melike_project/loginpage.dart';
+
+import 'components/analogClock.dart';
+import 'components/mainiconbutton.dart';
 
 class UserPages extends StatefulWidget {
   const UserPages({Key? key}) : super(key: key);
@@ -12,26 +16,41 @@ class UserPages extends StatefulWidget {
 
 class _UserPagesState extends State<UserPages> {
   String mevcutkullaniciUIDTutucu = "";
-  bool harfSiralama = false;
-
   @override
   void initState() {
-    KullaniciUIDAl();
+    kullaniciUidAl();
     super.initState();
   }
 
-  KullaniciUIDAl() async {
+  kullaniciUidAl() async {
     FirebaseAuth yetki = FirebaseAuth.instance;
-    final mevcutkullanici = await yetki.currentUser!;
-
+    final mevcutKullanici = await yetki.currentUser!;
     setState(() {
-      mevcutkullaniciUIDTutucu = mevcutkullanici.uid;
+      mevcutkullaniciUIDTutucu = mevcutKullanici.uid;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xffc2c0c0),
+        toolbarHeight: 40,
+        actions: [
+          MainIconButton(
+            iconsecici: Icons.logout,
+            press: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginPages(),
+                ),
+              );
+            },
+          )
+        ],
+      ),
       backgroundColor: const Color(0xffc2c0c0),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,30 +61,13 @@ class _UserPagesState extends State<UserPages> {
                   Container(
                     color: const Color(0xFFCF7751),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                FirebaseAuth.instance.signOut();
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const LoginPages(),
-                                  ),
-                                );
-                              },
-                              icon: const Icon(Icons.logout),
-                            ),
-                          ],
-                        ),
                         Image.asset('assets/images/3.png'),
                         const SizedBox(height: 25),
-                        const Text('Hoşgeldin cnm'),
+                        const Text('Hoşgeldin '),
                       ],
                     ),
                   ),
@@ -73,8 +75,14 @@ class _UserPagesState extends State<UserPages> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 35),
                       sytemClock(),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      AnalogSaat(),
                     ],
                   ),
                   //sistem saatine göre mesaj yazdırma
@@ -82,7 +90,7 @@ class _UserPagesState extends State<UserPages> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
                       Text(
-                        ' Tasks List',
+                        ' Görev Listeleri',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
@@ -97,33 +105,71 @@ class _UserPagesState extends State<UserPages> {
                     child: Column(
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Text(
-                              'Günlük görevler',
+                              'Görevler',
                               style: TextStyle(
                                   fontSize: 17, fontWeight: FontWeight.bold),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  harfSiralama = !harfSiralama;
-                                });
-                              },
-                              icon: Icon(
-                                Icons.abc,
-                                color: harfSiralama ? Colors.red : Colors.black,
-                              ),
                             ),
                             IconButton(
                               onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ListEkleme()),
+                                    builder: (context) => const ListAdd()),
                               ),
                               icon: const Icon(Icons.add),
                             ),
                           ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          child: StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection('taskLists')
+                                .doc(mevcutkullaniciUIDTutucu)
+                                .collection('myList')
+                                .snapshots(),
+                            builder: (context, veriTabaniVerilerim) {
+                              if (veriTabaniVerilerim.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else {
+                                final alinanVeri =
+                                    veriTabaniVerilerim.data!.docs;
+                                return ListView.builder(
+                                  itemCount: alinanVeri.length,
+                                  itemBuilder: (context, index) {
+                                    return Card(
+                                      color: const Color(0xffc2c0c0),
+                                      child: ListTile(
+                                        title: Text(
+                                          alinanVeri[index]['taskName'],
+                                          style: const TextStyle(fontSize: 15),
+                                        ),
+                                        subtitle: Text(
+                                          alinanVeri[index]['myContents'],
+                                        ),
+                                        trailing: IconButton(
+                                          icon: const Icon(Icons.delete),
+                                          onPressed: () async {
+                                            FirebaseFirestore.instance
+                                                .collection('taskLists')
+                                                .doc(mevcutkullaniciUIDTutucu)
+                                                .collection('myList')
+                                                .doc(alinanVeri[index].id)
+                                                .delete();
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -143,10 +189,16 @@ class _UserPagesState extends State<UserPages> {
     if (dtt.hour < 11) {
       textYazisi = "Günaydın";
     }
-    if (dtt.hour < 16) {
+    if (dtt.hour < 14) {
+      textYazisi = "Tünaydın";
+    }
+    if (dtt.hour < 18) {
       textYazisi = "İyi Günler";
+    }
+    if (dtt.hour < 21) {
+      textYazisi = "İyi Akşamlar";
     } else {
-      textYazisi = "İyi akşamlar";
+      textYazisi = "İyi Geceler";
     }
 
     return Text(
