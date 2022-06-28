@@ -8,7 +8,7 @@ class MainButton extends StatelessWidget {
   }) : super(key: key);
 
   final buttonstyle = ElevatedButton.styleFrom(
-    primary: const Color(0xFFFAA885),
+    primary: const Color(0xFFD27230),
     minimumSize: const Size(310, 55), // background
   );
   final VoidCallback press;

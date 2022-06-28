@@ -49,57 +49,58 @@ class _ListAddState extends State<ListAdd> {
         toolbarHeight: 40,
       ),
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Column(
-              children: [
-                const Text(
-                  'Görevlerinizi Ekleyin',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                const SizedBox(height: 30),
-                Image.asset(
-                  'assets/images/40.png',
-                  width: 120,
-                  height: 120,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      MainTextFormField(
-                        LabelText: 'Görev Adi',
-                        ControllerDenetleyici: GorevAdi,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      MainTextFormField(
-                          LabelText: 'Görev İçeriği',
-                          ControllerDenetleyici: GorevIci),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      MainButton(
-                          press: () async {
-                            await verileriEkle();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const UserPages()),
-                            );
-                          },
-                          text: 'Ekle'),
-                    ],
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Column(
+                children: [
+                  const Text(
+                    'Görevlerinizi Ekleyin',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 30),
+                  Image.asset(
+                    'assets/images/40.png',
+                    width: 120,
+                    height: 120,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        MainTextFormField(
+                          LabelText: 'Görev Adi',
+                          ControllerDenetleyici: GorevAdi,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        MainTextFormField(
+                            LabelText: 'Görev İçeriği',
+                            ControllerDenetleyici: GorevIci),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        MainButton(
+                            press: () async {
+                              await verileriEkle();
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const UserPages()),
+                              );
+                            },
+                            text: 'Ekle'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      )),
+      ),
     );
   }
 }

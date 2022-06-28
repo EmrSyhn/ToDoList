@@ -34,7 +34,7 @@ class _UserPagesState extends State<UserPages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xffc2c0c0),
+        backgroundColor: const Color(0xff811010),
         toolbarHeight: 40,
         actions: [
           MainIconButton(
@@ -65,7 +65,10 @@ class _UserPagesState extends State<UserPages> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset('assets/images/3.png'),
+                        Image.asset(
+                          'assets/images/ablamiz.png',
+                          width: 120,
+                        ),
                         const SizedBox(height: 25),
                         const Text('Hoşgeldin '),
                       ],
@@ -100,7 +103,7 @@ class _UserPagesState extends State<UserPages> {
                     margin: const EdgeInsets.all(15),
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color(0xff811010),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [

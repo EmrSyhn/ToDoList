@@ -42,7 +42,7 @@ class Anasayfa extends StatelessWidget {
                         );
                         // navigate to home page
                       } else {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => LoginPages(),

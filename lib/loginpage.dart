@@ -22,6 +22,10 @@ class _LoginPagesState extends State<LoginPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xffa40000),
+        toolbarHeight: 40,
+      ),
       backgroundColor: const Color(0xffc2c0c0),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -102,7 +106,7 @@ class _LoginPagesState extends State<LoginPages> {
                                       TextYazisi: 'Kayıt Ol',
                                       Press: () async {
                                         await biseyler();
-                                        Navigator.pushReplacement(
+                                        Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>

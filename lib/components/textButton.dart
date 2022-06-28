@@ -22,7 +22,7 @@ class MainTextButton extends StatelessWidget {
       onPressed: Press,
       child: Text(TextYazisi,
           style: const TextStyle(
-              color: Color(0xFFAD491E), fontWeight: FontWeight.bold)),
+              color: Color(0xffa40000), fontWeight: FontWeight.bold)),
     );
   }
 }
